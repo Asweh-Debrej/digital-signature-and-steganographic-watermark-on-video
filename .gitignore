@@ -160,7 +160,12 @@ cython_debug/
 #.idea/
 
 signature.json
-video.mkv
 
 .vscode/
 .anima/
+
+**/*.mp4
+**/*.png
+
+!video.mp4
+!watermark.png

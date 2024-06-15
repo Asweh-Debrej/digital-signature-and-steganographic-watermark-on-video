@@ -1,0 +1,55 @@
+{
+  "name": "DCT",
+  "time": 26.88589382171631,
+  "time per frame": 0.2688589382171631,
+  "psnr": 49.77742026721763,
+  "ssim": 0.9994387161155056,
+  "nc": 0.8917016015641562,
+  "ber": 0.34640354134516466,
+  "attack": {
+    "noise": {
+      "psnr": 9.615451511888399,
+      "ssim": 0.15256980562986505,
+      "nc": 0.008931566260746851,
+      "ber": 0.500298243995949
+    },
+    "brightness": {
+      "psnr": 14.069072890826442,
+      "ssim": 0.8659881243180725,
+      "nc": -0.0111779250467056,
+      "ber": 0.5033293613763503
+    },
+    "contrast": {
+      "psnr": 15.116735147950893,
+      "ssim": 0.8677662762454271,
+      "nc": -0.018227740288218705,
+      "ber": 0.5014745631590791
+    },
+    "rotation": {
+      "psnr": 17.884668679899946,
+      "ssim": 0.442735076691244,
+      "nc": 0.00790601276002554,
+      "ber": 0.49760887566711676
+    },
+    "compression": {
+      "psnr": 32.46779626031086,
+      "ssim": 0.9473889576333282,
+      "nc": -0.034475237636610485,
+      "ber": 0.5100485721289866
+    }
+  },
+  "signature": [
+    {
+      "name": "RSA-2048 - SHA-256",
+      "value": "b'o\\x85\\x8f7\\x1b\\xce\\xe4&\\xf0\\xa5\\xcf+8\\x82M L\\xe0\\xcc~\\x03A\\xa9\\x02\\xb3\\x1e\\xfdS\\xa2\\x98j\\x98/\\x18\\x98\\x0c\\x1c\\x1dp~\\xe0\\xf8X0w\\xd5\\x94\\xdc\\xca\\x0c\\xb0z\\x13b0\\x05\\x7f%\\x1fDr=\\xeei\\x19\\xc9\\x9f\\xb1\\xfa\\xa1Pw\\xfb\\xdf\\xae]\\x85\\xb3\\xd5Q\\xd9\\x9d\\xc2o\\xa8\\xa3Y(\\x05J\\x7fAq\\x8f\\x90\\xf1\\xff}\\x9a\\x86\\xb0A4\\x10\\xd9P?\\x16=w\\xac8\\xe3\\xd7\\x9f\\x88{\\xe1f]sv\\x97=h\\x02r\\xe7\\xf2\\xad\\x0fm:\\x9fb!\\xf2\\xbfA\\xef\\x18\\xb4\\xd4,5\\xac\\xd4\\x16\\xaf\\x89\\'FD\\xb0\\x80*\\x01\\x05_\\xbf\\x93\\xb1;\"\\x14\\xc1\\xc7\\x1b\\x90(\\xb7\\x85\\xb2\\xe9n\\xe0v[t\\xfd,\\xc0p\"\\xf8\\x86s\\x19\\xbe dC-<\\x84*\\xeeT\\xd3=\\x81F\\xa9X\\x96)\\xe2W\\xdb\\x04\\xf0\\x82\\xde\\xaf:9cn\\xaaI\\x0f\\xb7\\xb0eHHwp\\xc7B\\xcb\\xa7\\x7f1\\xff\\xe7:%bK\\xc9\\x05\\x8c\\x04\\xed\\xd3\\xba\\xe0Z\\xca\\xae\\xd1v^K\\x8e'",
+      "hash": "f5cda198d1522b2341d5c5785c41f926799cd6bb55e9f345f0e2b051e3442f50",
+      "time": 0.017528533935546875
+    },
+    {
+      "name": "RSA-2048 - SHA-3",
+      "value": "b'\\x1e\\xf92\\xb4F?\\x8a\\x97O\\x08|M\\xd7\\x0b\\xb5Ws\\x08\\x9c\\x10\\x95_\\xd4E\\xc6\\xe5s\\xca\\x178\\xad\\x10\\x8d(\\xdb\\x01\\xabH\\xbd\\x92y\\xa7\\xe6n\\x8c\\x8c!\\xf9\\xb1\\xeb\\xbd\\x8c6ec\\xf4\\xf3\\xab`^\\xa5\\xc8v\\x9b\\xa1\\x18\\xa61/\\x82\\x16\\xedS\\xd7<\\xff\\xc4Y\\xb9PS\\xf4\\xd5P\\xfa\\xe9\\x01MJ\\xba\\xe0D\\x91\\xcd\\xc9\\x03\\xf6\\xdd{\\xa0\\xd4\\x8c!k\\x15J>7\\x91\\xe5H\\xaf7\\xc8\\x97\\x97\\x87@\\x82<\\xe7 %!\\x12\\xef*\\xe4\\xcd\\xd8\\xd3\\xf9\\x86V\\x90\\x06\\x17\\xe8<Y\\xd1O(\\xed\\xa0\\xc5\\x9b\\xe5\\xd6\\x02\\xb3\\x8b\\xec\\xcfm~d,\\x1ac\\x01}\\xa8etZ\\xbdns\\x9c\\xe2\\xd2\\x02\\xda*\\t\\xa6\\xf5\\xe5\\xe7<\\xd2\\xa5\\xe1\\x02\\xf0Mh[\\xcbdi\\xe2\\xd9\\xbb\\xb7\\xfcd\\x17\\xb7z\\x81\"I\\xdf\\xb7n\\x1b:\\xc7\\xa9hd\\x81\\x9cf}\\x1b\\xcd82\\xe5\\x15\\xc9\\xf89#\\x8e\\xf9F\\xd9I \\x13\\xe3r\\xaa)\\xf9\\xae\\x8aoS\\xa4\\x1f3\\xa2\\xcd$\\xe2K\\xabY\\xad\\x88\\x03'",
+      "hash": "73f6875993c4139ef2bf3f80185f634f39c18bf8e78b3b8dfdd3a0f56ba23f4e",
+      "time": 0.027144432067871094
+    }
+  ]
+}
