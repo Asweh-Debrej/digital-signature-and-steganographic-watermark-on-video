@@ -10,7 +10,7 @@ from scipy.signal import fftconvolve
 
 
 class DSSS(Watermark):
-    def __init__(self, k=10):
+    def __init__(self, k=7):
         """Inisialisasi objek DSSS
 
         Args:
