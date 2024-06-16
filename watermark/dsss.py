@@ -34,7 +34,7 @@ class DSSS(Watermark):
                           [-1, -1, -1]])
 
         # Menerapkan filter
-        filtered = cv2.filter2D(image, -1, kernel)
+        filtered = cv2.filter2D(image.astype(np.int16), -1, kernel)
         return filtered
 
     def generate_pseudo_random_sequence(self, shape, key):

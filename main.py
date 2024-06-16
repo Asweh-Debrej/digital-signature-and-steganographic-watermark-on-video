@@ -147,7 +147,7 @@ def apply_attack(video_path, attack_type, output_path):
 
     out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
-    for _ in range(frame_count):
+    for i in range(frame_count):
         ret, frame = cap.read()
         if not ret:
             break
@@ -167,6 +167,10 @@ def apply_attack(video_path, attack_type, output_path):
             encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50]
             _, buffer = cv2.imencode('.jpg', frame, encode_param)
             frame = cv2.imdecode(buffer, cv2.IMREAD_COLOR)
+
+        # printout first frame as thumbnail
+        if i == 0:
+            cv2.imwrite(f'{output_path[:-4]}.png', frame)
 
         out.write(frame)
 
@@ -196,6 +200,8 @@ def evaluate_watermarking(watermarking: Watermark, frames, watermark, watermarki
     for frame in frames:
         out.write(frame)
     out.release()
+
+    cv2.imwrite(f'{folder}/original_thumbnail.png', frames[0])
 
     original_watermark_path = f'{folder}/original_watermark.png'
     os.makedirs(os.path.dirname(original_watermark_path), exist_ok=True)
@@ -227,6 +233,9 @@ def evaluate_watermarking(watermarking: Watermark, frames, watermark, watermarki
     for frame in watermarked_frames:
         out.write(frame)
     out.release()
+
+    # printout first frame as thumbnail
+    cv2.imwrite(f'{folder}/watermarked_thumbnail.png', watermarked_frames[0])
 
     # Menghitung kapasitas watermarking
     # capacity = watermarking.calculate_capacity(video_path)
@@ -416,6 +425,9 @@ def evaluate_dsss(frames, watermarking: DSSS, watermarking_key, frame_count=FRAM
         out.write(frame)
     out.release()
 
+    # printout first frame as thumbnail
+    cv2.imwrite(f'{folder}/original_thumbnail.png', frames[0])
+
     watermark = np.zeros_like(frames[0])
     for i in range(frames[0].shape[-1]):
         watermark[..., i] = watermarking.generate_pseudo_random_sequence(
@@ -451,6 +463,23 @@ def evaluate_dsss(frames, watermarking: DSSS, watermarking_key, frame_count=FRAM
     for frame in watermarked_frames:
         out.write(frame)
     out.release()
+
+    # printout first frame as thumbnail
+    cv2.imwrite(f'{folder}/watermarked_thumbnail.png', watermarked_frames[0])
+
+    print('Calculating PSNR and SSIM')
+    print('_'*FRAME_COUNT)
+    psnr_values = []
+    ssim_values = []
+    for i in range(FRAME_COUNT):
+        psnr_value = calculate_psnr(frames[i], watermarked_frames[i])
+        ssim_value = calculate_ssim(frames[i], watermarked_frames[i])
+        psnr_values.append(psnr_value)
+        ssim_values.append(ssim_value)
+        print('█', end='', flush=True)
+
+    print('\tDone!')
+    print('‾'*FRAME_COUNT)
 
     # Menghitung kapasitas watermarking
     # capacity = watermarking.calculate_capacity(video_path)
@@ -502,15 +531,38 @@ def evaluate_dsss(frames, watermarking: DSSS, watermarking_key, frame_count=FRAM
         print('\tDone!')
         print('‾'*FRAME_COUNT)
 
-        # Menghitung korelasi
+        print('Calculating PSNR and SSIM')
+        print('_'*FRAME_COUNT)
+        attacked_psnr_values = []
+        attacked_ssim_values = []
+        for i in range(FRAME_COUNT):
+            psnr_value = calculate_psnr(
+                attacked_frames[i], watermarked_frames[i])
+            ssim_value = calculate_ssim(
+                attacked_frames[i], watermarked_frames[i])
+            attacked_psnr_values.append(psnr_value)
+            attacked_ssim_values.append(ssim_value)
+            print('█', end='', flush=True)
+
+        print('\tDone!')
+        print('‾'*FRAME_COUNT)
+
+        print('Detecting watermark')
+        print('_'*FRAME_COUNT)
         attacked_correlations = []
         for i in range(FRAME_COUNT):
             correlation = watermarking.detect(
                 attacked_frames[i], watermarking_key)
             correlation_value = sum(correlation) / len(correlation)
             attacked_correlations.append(correlation_value)
+            print('█', end='', flush=True)
+
+        print('\tDone!')
+        print('‾'*FRAME_COUNT)
 
         attack_results[attack] = {
+            'psnr': sum(attacked_psnr_values) / len(attacked_psnr_values),
+            'ssim': sum(attacked_ssim_values) / len(attacked_ssim_values),
             'correlation': sum(attacked_correlations) / len(attacked_correlations),
         }
 
@@ -521,6 +573,8 @@ def evaluate_dsss(frames, watermarking: DSSS, watermarking_key, frame_count=FRAM
         'name': f'DSSS',
         'time': watermarking_time,
         'time per frame': watermarking_time / FRAME_COUNT,
+        'psnr': sum(psnr_values) / len(psnr_values),
+        'ssim': sum(ssim_values) / len(ssim_values),
         'correlation': sum(correlations) / len(correlations),
         'attack': attack_results,
     }
